@@ -1,0 +1,54 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+    echo "Usage: $0 <Input Filename>"
+    echo "  Runs 'strings' and 'file' and 'exiftool' on input file, and generates output files"
+    exit 1
+fi
+
+# suffix incase we want to keep files for multi stage
+if [ -z "$2" ]
+then
+strings_out_filename="strings_out.txt"
+file_out_filename="file_out.txt"
+exif_out_filename="exif_out.txt"
+else
+strings_out_filename="strings_out_$2.txt"
+file_out_filename="file_out_$2.txt"
+exif_out_filename="exif_out_$2.txt"
+fi
+
+# Here strings and file are being run
+strings "$1" > "$strings_out_filename"
+file "$1" > "$file_out_filename"
+exiftool "$1" > "$exif_out_filename"
+
+echo "========================================"
+echo "=================CTF===================="
+echo "========================================"
+
+# search those output file for regex CTF sequence
+grep -in 'ctf' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'ctflearn' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'learn' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'secret' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'pass' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'nothing' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -n '{.*}' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+
+echo "========================================"
+echo "==============Base 64==================="
+echo "========================================"
+
+# search for base64 strings, and auto decode them
+base64LeftSideCharMinimum=5
+grep -n "[A-Za-z0-9]\{$base64LeftSideCharMinimum,\}[=]\{1,2\}" {$strings_out_filename,$file_out_filename,$exif_out_filename}
+
+
+# search for url links
+echo "========================================"
+echo "=================URL===================="
+echo "========================================"
+grep -in 'http' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+grep -in 'www[.]' {$strings_out_filename,$file_out_filename,$exif_out_filename}
