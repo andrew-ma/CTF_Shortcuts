@@ -8,7 +8,13 @@ I added this alias to .bashrc
 alias ciphey="docker run -it --rm remnux/ciphey"
 ```
 
-Here is another alias for doing rot13
+Alias for binwalk
+```
+alias bw="binwalk -e -D=\".*\""
+```
+
+
+Alias for doing rot13
 ```
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 ```
