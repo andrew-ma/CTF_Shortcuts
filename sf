@@ -52,3 +52,11 @@ echo "=================URL===================="
 echo "========================================"
 grep -in 'http' {$strings_out_filename,$file_out_filename,$exif_out_filename}
 grep -in 'www[.]' {$strings_out_filename,$file_out_filename,$exif_out_filename}
+
+
+
+# search for file extensions (might want to binwalk)
+echo "========================================"
+echo "============File Extensions============="
+echo "========================================"
+grep -in '[.]\(jpe\?g\|gif\|png\|mp4\|mp3\|tar\|gz\|tiff\|zip\|7z\|pdf\|txt\|bat\|ps1\|cmd\|sh\|py\)' {$strings_out_filename,$file_out_filename,$exif_out_filename}
