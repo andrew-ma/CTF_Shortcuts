@@ -10,7 +10,7 @@ alias ciphey="docker run -it --rm remnux/ciphey"
 
 Alias for steganography toolkit (might have to run this command before X11 works 'xhost +"local:docker@"')
 ```
-alias steg="docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/data:/data dominicbreuker/stego-toolkit /bin/bash"
+alias steg="docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v \"$(pwd)/data:/data\" dominicbreuker/stego-toolkit /bin/bash"
 
 ```
 
