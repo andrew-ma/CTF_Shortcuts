@@ -7,37 +7,45 @@ then
     exit 1
 fi
 
+strings_out_filename="strings_out.txt"
+file_out_filename="file_out.txt"
+exif_out_filename="exif_out.txt"
+
 if [ "$1" = "cleanall" ]
 then
-    rm strings_out*.txt
-    rm file_out*.txt
-    rm exif_out*.txt
-    echo "Removed all output files"
+    find . -name "${strings_out_filename%.txt}*.txt" -delete
+    find . -name "${file_out_filename%.txt}*.txt" -delete
+    find . -name "${exif_out_filename%.txt}*.txt" -delete
+    echo "Removed all output files including files with suffixes"
+    exit 0
+elif [ "$1" = "clean" ]
+then
+    rm "$strings_out_filename" 2>/dev/null
+    rm "$file_out_filename" 2>/dev/null
+    rm "$exif_out_filename" 2>/dev/null
+
+    echo "Removed output files"
+    echo "Tip: Use \"cleanall\" instead to remove all files with suffixes"
     exit 0
 fi
 
 # suffix incase we want to keep files for multi stage
 if [ -z "$2" ]
 then
-    strings_out_filename="strings_out.txt"
-    file_out_filename="file_out.txt"
-    exif_out_filename="exif_out.txt"
+    # do nothing if arg2 is blank
+    echo
 elif [ "$2" = "clean" ]
 then
-    strings_out_filename="strings_out.txt"
-    file_out_filename="file_out.txt"
-    exif_out_filename="exif_out.txt"
-    
-    rm "$strings_out_filename"
-    rm "$file_out_filename"
-    rm "$exif_out_filename"
+    rm "$strings_out_filename" 2>/dev/null
+    rm "$file_out_filename" 2>/dev/null
+    rm "$exif_out_filename" 2>/dev/null
 
     echo "Removed output files"
     exit 0
 else
-    strings_out_filename="strings_out_$2.txt"
-    file_out_filename="file_out_$2.txt"
-    exif_out_filename="exif_out_$2.txt"
+    strings_out_filename="${strings_out_filename%.txt}_$2.txt"
+    file_out_filename="${file_out_filename%.txt}_$2.txt"
+    exif_out_filename="${exif_out_filename%.txt}_$2.txt"
 fi
 
 if [ -z "$3" ]
@@ -46,9 +54,9 @@ then
     echo
 elif [ "$3" == "clean" ]
 then
-    rm "$strings_out_filename"
-    rm "$file_out_filename"
-    rm "$exif_out_filename"
+    rm "$strings_out_filename" 2>/dev/null
+    rm "$file_out_filename" 2>/dev/null
+    rm "$exif_out_filename" 2>/dev/null
     echo "Removed files with suffix \"$2\" successfully"
     exit 0
 fi
