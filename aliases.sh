@@ -22,7 +22,7 @@ b64 () { if [ "$1" = "-d" ]; then decFlag="-d"; shift; elif [ "$1" = "-e" ]; the
 
 ##### Commands #####
 # Make CAPS to ESC
-setxkbmap -option "caps:swapescape"
+# setxkbmap -option "caps:swapescape"
 
 # Make display work for 'steg' alias
 xhost +"local:docker@" > /dev/null
