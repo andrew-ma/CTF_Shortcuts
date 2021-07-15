@@ -29,10 +29,10 @@ shared_mount () { sudo mkdir -p /mnt/hgfs && sudo /usr/bin/vmhgfs-fuse .host:/ /
 
 shared_unmount () { sudo umount /mnt/hgfs; }
 
+swap_caps() { setxkbmap -option "caps:swapescape"; }
+
 
 ##### Commands #####
-# Make CAPS to ESC
-# setxkbmap -option "caps:swapescape"
 
 # Make display work for 'steg' alias
 xhost +"local:docker@" > /dev/null 2>&1
