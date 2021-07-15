@@ -9,8 +9,8 @@ alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 
 ##### Environment Variables ####
-export PATH="hot:$PATH"
-
+# Add current file's path to PATH
+export PATH="$(realpath $(dirname $0)):$PATH"
 
 ##### Commands ####
 # Make CAPS to ESC
