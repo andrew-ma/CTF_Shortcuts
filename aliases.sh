@@ -11,11 +11,8 @@ alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 ##### Environment Variables #####
 # Add current file's directory to PATH if it is not found in PATH already
 SCRIPT_DIR=$(realpath $(dirname $0))
-CUR_DIR="$PWD"
-#SCRIPT_FILE="${CUR_DIR}/${0#*/}"
 
 if [[ "$PATH" == *"$SCRIPT_DIR"* ]]; then : ; else export PATH="$SCRIPT_DIR:$PATH"; fi
-if [[ "$PATH" == *"$CUR_DIR"* ]]; then : ; else export PATH="$CUR_DIR:$PATH"; fi
 
 
 ##### Functions #####
