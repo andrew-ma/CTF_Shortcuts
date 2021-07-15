@@ -25,6 +25,10 @@ b64py () { if [ -z "$1" ]; then echo "Usage: $0 <base64String>"; return 1; fi; e
 
 steg () { [ ! -d "/path/to/dir" ] && mkdir -p data && docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd)/data:/data" dominicbreuker/stego-toolkit /bin/bash; }
 
+shared_mount () { sudo mkdir -p /mnt/hgfs && sudo /usr/bin/vmhgfs-fuse .host:/ /mnt/hgfs/ -o subtype=vmhgfs-fuse,allow_other; }
+
+shared_unmount () { sudo umount /mnt/hgfs; }
+
 
 ##### Commands #####
 # Make CAPS to ESC
