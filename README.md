@@ -3,7 +3,7 @@
 ```
 git clone https://github.com/andrew-ma/CTF_Shortcuts ~/CTF_Shortcuts
 
-source ~/CTF_Shortcuts/aliases.sh
+. ~/CTF_Shortcuts/aliases.sh
 ```
 
 ---
