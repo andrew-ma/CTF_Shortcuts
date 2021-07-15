@@ -17,7 +17,7 @@ export PATH="$(realpath $(dirname $0)):$PATH"
 # Use string on right side with 'base64' command
 # Defaults to decode string
 # Encodes if "-e"
-b64 () { if [ "$1" = "-d" ]; then decFlag="-d"; shift; elif [ "$1" = "-e" ]; then decFlag=""; else decFlag="-d"; fi; if [ -z "$1" ]; then echo "b64 [-e/-d] string"; return; fi; arg1="$1"; shift; echo "$arg1" | base64 $decFlag "$@"}
+b64 () { if [ "$1" = "-d" ]; then decFlag="-d"; shift; elif [ "$1" = "-e" ]; then decFlag=""; else decFlag="-d"; fi; if [ -z "$1" ]; then echo "b64 [-e/-d] string"; return; fi; arg1="$1"; shift; echo "$arg1" | base64 $decFlag "$@"; }
 
 
 ##### Commands #####
