@@ -2,11 +2,18 @@
 
 if [ -z "$1" ]
 then
-    echo "Usage: $0 <Input Filename>"
-    echo "  Runs 'strings' and 'file' and 'exiftool' on input file, and generates output files"
-    echo "  If pass in arg2, then that will be used as suffix for files to not overwrite last output"
-    echo "  If pass in 'clean' for arg2 or arg3, then it will remove the files that were generated"
+    echo "Usage: $0 {FILENAME} [optional_suffix]"
+    echo "       - Uses 'strings', 'file', and 'exiftool'"
     exit 1
+fi
+
+if [ "$1" = "cleanall" ]
+then
+    rm strings_out*.txt
+    rm file_out*.txt
+    rm exif_out*.txt
+    echo "Removed all output files"
+    exit 0
 fi
 
 # suffix incase we want to keep files for multi stage
@@ -15,15 +22,17 @@ then
     strings_out_filename="strings_out.txt"
     file_out_filename="file_out.txt"
     exif_out_filename="exif_out.txt"
-elif [ "$2" == "clean" ]
+elif [ "$2" = "clean" ]
 then
     strings_out_filename="strings_out.txt"
     file_out_filename="file_out.txt"
     exif_out_filename="exif_out.txt"
+    
     rm "$strings_out_filename"
     rm "$file_out_filename"
     rm "$exif_out_filename"
-    echo "Removed files successfully"
+
+    echo "Removed output files"
     exit 0
 else
     strings_out_filename="strings_out_$2.txt"
