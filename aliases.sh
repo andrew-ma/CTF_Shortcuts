@@ -13,7 +13,7 @@ alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 ##### Environment Variables #####
 # Add current file's path to PATH if it is not found in PATH already
 script_dir=$(realpath $(dirname $0))
-[ "$PATH" =~ "$script_dir" ] || export PATH="$script_dir:$PATH"
+[[ "$PATH" =~ $script_dir ]] || export PATH="$script_dir:$PATH"
 
 
 ##### Functions #####
