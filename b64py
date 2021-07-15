@@ -1,9 +1,0 @@
-#!/bin/bash
-if [ -z "$1" ]
-then
-    echo "Usage: $0 <base64String>"
-    exit 1
-fi
-
-echo "You entered: '$1'"
-python3 -c "import base64; x=base64.b64decode('$1'); print(x.decode())"
