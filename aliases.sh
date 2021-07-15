@@ -31,6 +31,8 @@ shared_unmount () { sudo umount /mnt/hgfs; }
 
 swap_caps() { setxkbmap -option "caps:swapescape"; }
 
+restore_caps() { setxkbmap -option; }
+
 
 ##### Commands #####
 
