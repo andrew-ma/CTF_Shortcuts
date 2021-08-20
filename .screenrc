@@ -1,0 +1,139 @@
+# Automatically detach upon hangup, and not terminate processes
+autodetach on
+
+# make Detach and Re-attach without losing regions layout
+layout save default
+
+# To not see startup message
+startup_message off
+
+# Use bright colors for bold text
+attrcolor b ".I"
+
+# Cache 30000 lines for scroll back
+defscrollback 30000
+
+# Erase backgroud with current bg color
+defbce on
+
+# visual bell message instead of audible bell
+vbell on
+
+# For 'hardcopy' command, append to the hardcopy.n files and don't overwrite
+hardcopy_append on
+
+# Focus on region when mouse click
+mousetrack on
+
+# change command character from ctrl-a to ctrl-b (like tmux)
+#escape ^Bb
+
+############### COMMANDS ###############
+
+# Get current user variable and display in status bar when %1`
+backtick 1 0 0 echo "$USER"
+
+############### STATUS BAR ###############
+
+caption always '%{= bW} %{+b}%n%{-} %{= kd}'
+hardstatus alwayslastline
+hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%S%{-} | %{B}%D %M %d, %c%{-} | %?%-w%?%{gW}[ %{+b .W}%n%{-}%? %t%?%? (%u)%? ]%{-}%?%+w%?'
+# %{= dd}	:	clear all attributes (=), default background (d), default text (d).  This will be used as default style, which will be restored with %{-} after any color changes
+# %{G}%1`%H%{-}:	brightgreen text - user@hostname if USER variable found, otherwise just @
+# |			:	'|' separator
+# %{y}%S%{-}:	yellow text - session name
+# |			:	'|' separator
+# %{B}		:	start date time styles:	brightblue text
+# %D		:	weekday name
+# %M		:	month name
+# %d		:	day number
+# %c		:	current time HH:MM in 24h format
+# %{-}		:	end date time styles
+# |			:	'|' separator
+# %?%-w%?	:	if there are windows before current, display them
+# %{gW}		:	start current window styles:	green background, brightwhite text
+# [			:	start brackets
+# %{.G}%n%{-}	:	brightgreen text window number
+# %? %t%?		:	if window has a title, then display a space after window number, and the window title
+# %?(%u%)%?	:	if there are any other users on this window, display them
+# ]			:	end brackets
+# %{-}		:	end current window styles
+# %?%+w%?	:	if there are windows after current, display them
+
+
+############### KEYS ###############
+
+#bindkey -k k2 screen
+
+# F3 : previous screen
+bindkey -k k3 prev
+
+# F4 : next screen
+bindkey -k k4 next
+
+# F5 : enable copy mode
+bindkey -k k5 copy
+
+# register t to change title
+register t "^aA^aa^k^h"
+
+# F6 : change title
+bindkey -k k6 process t
+
+# F7 : detach session
+bindkey -k k7 detach
+
+# F8 : quit
+bindkey -k k8 quit
+
+# Ctrl+a f : show status line in title
+bind f hardstatus ignore
+
+# Ctrl+a F : show status line on last line
+bind F hardstatus alwayslastline
+
+# Ctrl+a x : change default lockterminal to remove region
+bind x remove
+
+# Ctrl+a s : change default xoff to split horizontally
+bind s split
+
+# Ctrl+a q : change default xon to show only current region
+bind q only
+
+# navigating regions with Ctrl+a  HJKL
+bind h focus left
+bind l focus right
+bind k focus up
+bind j focus down
+
+# navigating regions with Ctrl+HJKL (will override Ctrl+L which clears screen)
+#bindkey "^H" focus left
+#bindkey "^L" focus right
+#bindkey "^K" focus up
+#bindkey "^J" focus down
+
+# navigating regions with Ctrl+Arrow Key
+#bindkey "^[[1;5D" focus left
+#bindkey "^[[1;5C" focus right
+#bindkey "^[[1;5A" focus up
+#bindkey "^[[1;5B" focus down
+
+############### RESIZE MODE ###############
+
+# F2 puts Screen into resize mode. Resize regions using hjkl keys.
+bindkey "^[OQ" eval "command -c rsz" # enter resize mode
+
+# While in resize mode, switch between regions using Arrow keys
+bind -c rsz \t eval "focus"  "command -c rsz" # tab
+bind -c rsz -k kl eval "focus left"  "command -c rsz" # Left
+bind -c rsz -k kr eval "focus right" "command -c rsz" # Right
+bind -c rsz -k ku eval "focus up"    "command -c rsz" # Up
+bind -c rsz -k kd eval "focus down"  "command -c rsz" # Down
+bind h focus left
+
+# While in resize mode, use hjkl keys to resize regions
+bind -c rsz h eval "resize -h -5" "command -c rsz"
+bind -c rsz j eval "resize -v -5" "command -c rsz"
+bind -c rsz k eval "resize -v +5" "command -c rsz"
+bind -c rsz l eval "resize -h +5" "command -c rsz"
