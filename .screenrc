@@ -35,7 +35,7 @@ backtick 1 0 0 echo "$USER"
 
 ############### STATUS BAR ###############
 
-caption always '%{= bW} %{+b}%n%{-} %{= kd}'
+caption always '%{= rW} %{+b}%n%{-} %{= kd}'
 hardstatus alwayslastline
 hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%S%{-} | %{B}%D %M %d, %c%{-} | %?%-w%?%{gW}[ %{+b .W}%n%{-}%? %t%?%? (%u)%? ]%{-}%?%+w%?'
 # %{= dd}	:	clear all attributes (=), default background (d), default text (d).  This will be used as default style, which will be restored with %{-} after any color changes
