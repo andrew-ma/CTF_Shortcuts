@@ -7,6 +7,18 @@ alias bw="binwalk -e -D=\".*\""
 
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
+# command | copy
+# to copy to clipboard
+alias copy='xclip -selection clipboard'
+
+# command | copyline
+# to copy to clipboard as single line with newlines changed to spaces
+alias copyoneline='xargs echo -n | xclip -selection clipboard'
+
+# to copy to clipboard as single line with newlines substituted with literal '\n'
+function copynewline () {
+  awk '{printf "%s\\n", $0}' | xclip -selection clipboard
+}
 
 ##### Environment Variables #####
 # Add current file's directory to PATH if it is not found in PATH already
