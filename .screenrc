@@ -63,28 +63,11 @@ hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%S%{-} | %{B}%D %M %d, %c%{-} | 
 
 ############### KEYS ###############
 
-#bindkey -k k2 screen
-
-# F3 : previous screen
-bindkey -k k3 prev
-
-# F4 : next screen
-bindkey -k k4 next
-
-# F5 : enable copy mode
-bindkey -k k5 copy
-
 # register t to change title
 register t "^aA^aa^k^h"
 
 # F6 : change title
 bindkey -k k6 process t
-
-# F7 : detach session
-bindkey -k k7 detach
-
-# F8 : quit
-bindkey -k k8 quit
 
 # Ctrl+a f : show status line in title
 bind f hardstatus ignore
