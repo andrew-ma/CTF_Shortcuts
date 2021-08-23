@@ -32,12 +32,15 @@ mousetrack on
 
 # Get current user variable and display in status bar when %1`
 backtick 1 0 0 echo "$USER"
+backtick 2 0 30 hostname -I
 
 ############### STATUS BAR ###############
 
 caption always '%{= rW} %{+b}%n%{-} %{= kd}'
 hardstatus alwayslastline
-hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%S%{-} | %{B}%D %M %d, %c%{-} | %?%-w%?%{gW}[ %{+b .W}%n%{-}%? %t%?%? (%u)%? ]%{-}%?%+w%?'
+hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%2`%{-}| %{B}%D %M %d, %c%{-} | %?%-w%?%{gW}[ %{+b .W}%n%{-}%? %t%?%? (%u)%? ]%{-}%?%+w%?'
+
+# hardstatus string '%{= dd} %{G}%1`@%H%{-} | %{y}%S%{-} | %{B}%D %M %d, %c%{-} | %?%-w%?%{gW}[ %{+b .W}%n%{-}%? %t%?%? (%u)%? ]%{-}%?%+w%?'
 # %{= dd}	:	clear all attributes (=), default background (d), default text (d).  This will be used as default style, which will be restored with %{-} after any color changes
 # %{G}%1`%H%{-}:	brightgreen text - user@hostname if USER variable found, otherwise just @
 # |			:	'|' separator
