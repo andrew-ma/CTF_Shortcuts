@@ -4,6 +4,9 @@ autodetach on
 # make Detach and Re-attach without losing regions layout
 layout save default
 
+# Case insensitive search in copy mode
+ignorecase on
+
 # To not see startup message
 startup_message off
 
