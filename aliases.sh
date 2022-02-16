@@ -47,6 +47,8 @@ swap_caps() { setxkbmap -option "caps:swapescape"; }
 
 restore_caps() { setxkbmap -option; }
 
+unziptop() { unzip -d "$(basename "$1" .zip)" "$1" }
+
 
 ##### Commands #####
 
