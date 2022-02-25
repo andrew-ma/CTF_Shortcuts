@@ -51,6 +51,9 @@ restore_caps() { setxkbmap -option; }
 
 unziptop() { unzip -d "$(basename "$1" .zip)" "$1"; }
 
+tardir () { CUR_FOLDERNAME=$(basename $(realpath .)); pushd ..; TAR_FILENAME="${CUR_FOLDERNAME}_$(date -u +"%Y-%m-%dT%H-%M-%S").tar.gz"; tar cvzf "${TAR_FILENAME}" "${CUR_FOLDERNAME}"; mv ${TAR_FILENAME} ${CUR_FOLDERNAME}; popd; }
+
+
 
 ##### Commands #####
 
