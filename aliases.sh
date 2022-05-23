@@ -61,4 +61,4 @@ ejectsafe() { if [ -z "$1" ]; then echo "Usage: ejectsafe [/dev/sda1]"; return 1
 # Make display work for 'steg' alias
 xhost +"local:docker@" > /dev/null 2>&1
 
-echo "Sourced \"$0\" successfully"
+#echo "Sourced \"$0\" successfully"
