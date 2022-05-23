@@ -26,7 +26,7 @@ vbell on
 hardcopy_append on
 
 # Focus on region when mouse click
-mousetrack on
+#mousetrack on
 
 # change command character from ctrl-a to ctrl-b (like tmux)
 #escape ^Bb
