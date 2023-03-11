@@ -10,12 +10,12 @@ set cursorline
 " INDENT OPTIONS
 " number of spaces when tab keypress
 set tabstop=4
-" convert tabs to spaces
-set expandtab
-" insert tabstop number of spaces, and not a tab character when tab keypress
-set smarttab
 " indent with shiftwidth number of spaces when shifting
 set shiftwidth=4
+" when softtabstop is negative tab key moves cursor by shiftwidth
+set softtabstop=-1
+" convert tabs to spaces
+set expandtab
 " when shifting, round to nearest multiple of shiftwidth number
 set shiftround
 set cindent
@@ -24,7 +24,7 @@ set autoindent
 " disable indenting with paste mode
 set pastetoggle=<f5>
 
-autocmd FileType yml,yaml setlocal ts=2 sw=2 smarttab expandtab 
+autocmd FileType yml,yaml setlocal ts=2 sw=2 sts=-1 expandtab 
 
 " SEARCH OPTIONS
 " search highlighting
