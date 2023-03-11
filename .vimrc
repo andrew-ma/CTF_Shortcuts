@@ -24,6 +24,8 @@ set autoindent
 " disable indenting with paste mode
 set pastetoggle=<f5>
 
+autocmd FileType yml,yaml setlocal ts=2 sts=2 sw=2 expandtab 
+
 " SEARCH OPTIONS
 " search highlighting
 set hlsearch
