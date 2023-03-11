@@ -1,5 +1,5 @@
 set nocompatible
-colo peachpuff
+colo industry
 syntax on
 filetype plugin indent on
 " show line numbers
