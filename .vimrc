@@ -76,3 +76,5 @@ set nrformats-=octal
 " backspace over indentation from autoindent, backspace over eol to join with
 " line above, backspace past position where you started to insert
 set backspace=indent,eol,start
+" don't jump to matching curly braces
+let g:loaded_matchparen=1
