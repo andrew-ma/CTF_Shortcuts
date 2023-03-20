@@ -1,0 +1,11 @@
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --all --pretty=format:'%C(green)%h%Creset %ad %Cblue|%Creset %s%C(yellow)%d%Creset [%an]' --graph --date=short --topo-order
+    type = cat-file -t
+    dump = cat-file -p
+
+[color]
+    diff = true
